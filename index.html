@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razorpay Payment Gateway</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Step 1: Choose Payment Type -->
+        <div id="payment-type-selection">
+            <h1>Select Payment Method</h1>
+            <p>Choose your preferred payment method:</p>
+            <button class="payment-option" onclick="choosePaymentType('debit')">Debit Card</button>
+            <button class="payment-option" onclick="choosePaymentType('credit')">Credit Card</button>
+        </div>
+
+        <!-- Step 2: Enter Payment Details -->
+        <div id="payment-details-form" style="display: none;">
+            <h1>Enter Your Details</h1>
+            <form id="payment-form">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" placeholder="Your name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Your email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" placeholder="Your phone number" required>
+
+                <label for="card-type">Card Type:</label>
+                <input type="text" id="card-type" readonly>
+
+                <label for="amount">Amount (INR):</label>
+                <input type="number" id="amount" placeholder="Enter amount in INR" required>
+
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" placeholder="Enter card number" required>
+
+                <label for="expiry">Expiry Date:</label>
+                <input type="month" id="expiry" required>
+
+                <label for="cvv">CVV:</label>
+                <input type="number" id="cvv" placeholder="Enter CVV" required>
+
+                <button type="submit" id="rzp-button">Pay Now</button>
+            </form>
+        </div>
+
+        <!-- Step 3: Payment Status and OTP -->
+        <div id="otp-stage" style="display: none;">
+            <h1>Payment Initiated!</h1>
+            <p>Please enter the OTP sent to your phone to complete the payment.</p>
+            <form id="otp-form">
+                <label for="otp">Enter OTP:</label>
+                <input type="number" id="otp" placeholder="Enter OTP" required>
+                <button type="submit" id="otp-button">Submit OTP</button>
+            </form>
+            <p id="otp-response"></p>
+        </div>
+
+        <!-- Final Step: Payment Success Message -->
+        <div id="payment-success" style="display: none;">
+            <h1>Payment Successful!</h1>
+            <p>Thank you for your payment. Your payment ID is <span id="payment-id"></span>.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
